@@ -26,8 +26,12 @@
         const url = "https://zarchiv.zueriost.ch/epaper/pdf/download_issue.php?publication=zol&date=" + yyyy + "-" + pad0(mm) + "-" + pad0(dd);
         document.getElementById(id).onclick = () => {
                   const win = window.open(url, '_blank');
-                  win.close();
-                  location = url;
+            
+            onload = function () { 
+                    win.close();
+                    location = url;
+            }
+                  
                 }
         document.getElementById(id).text=wochentagText[wochentag] + ": " + dd + "." + mm + "." + yyyy;
     }
