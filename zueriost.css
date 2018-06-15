@@ -1,0 +1,31 @@
+body {
+    font-family: Arial;
+}
+
+h1 {
+    text-align: center;
+}
+
+a.button {
+    display: block;
+    width: auto;
+    padding: 60px;
+
+    text-decoration: none;
+    text-align: center;
+
+    color: black;
+    background-color: #f4ad49;
+}
+
+div.button-list {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 100%;
+}
