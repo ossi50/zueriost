@@ -27,7 +27,7 @@
         document.getElementById(id).onclick = () => {
                   const win = window.open(url, '_blank');
             
-            onload = function () { 
+            win.onload = function () { 
                     win.close();
                     location = url;
             }
