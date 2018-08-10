@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="zueriost.css?version=1.7">
     <title>Züriost</title>
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
 </head>
 <body onload="computeDates()">
 <script>
     function computeDates() {
-        var date = new Date();
-        setArchiveDate(date, "today")
+        var buttonsDiv = document.getElementById("buttons");
 
-        for (i = 1; i <= 30; i++) {
-            date.setDate(date.getDate() - 1);
-            setArchiveDate(date, "today" + i);
+        for (i = 0; i <= 30; i++) {
+            var date = new Date();
+            date.setDate(date.getDate() - i);
+            setArchiveDate(buttonsDiv, date);
         }
     }
-    function setArchiveDate(date, id) {
+
+    function setArchiveDate(buttonsDiv, date) {
         var dd = date.getDate();
         var mm = date.getMonth()+1; //January is 0!
         var yyyy = date.getFullYear();
         var wochentag = date.getDay();
         wochentagText = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag' ];
         const url = "http://zarchiv.zueriost.ch/epaper/pdf/download_issue.php?publication=zol&date=" + yyyy + "-" + pad0(mm) + "-" + pad0(dd);
-        document.getElementById(id).href=url;
-        document.getElementById(id).target="_blank";
-        document.getElementById(id).text=wochentagText[wochentag] + ": " + dd + "." + mm + "." + yyyy;
+
+        var buttonEl = document.createElement("a");
+        buttonEl.setAttribute("class", "button");
+        buttonEl.href=url;
+        buttonEl.target="_blank";
+        buttonEl.text=wochentagText[wochentag] + ": " + dd + "." + mm + "." + yyyy;
+
+        var divEl = document.createElement("div");
+        divEl.setAttribute("class", "button-list");
+        divEl.appendChild(buttonEl);
+        buttonsDiv.appendChild(divEl);
     }
 
     function pad0(num) {
@@ -39,36 +47,6 @@
 
 </script>
 <h1>Züriost-Ausgaben</h1>
-<div class="button-list"><a class="button" id="today"></a></div>
-<div class="button-list"><a class="button" id="today1"></a></div>
-<div class="button-list"><a class="button" id="today2"></a></div>
-<div class="button-list"><a class="button" id="today3"></a></div>
-<div class="button-list"><a class="button" id="today4"></a></div>
-<div class="button-list"><a class="button" id="today5"></a></div>
-<div class="button-list"><a class="button" id="today6"></a></div>
-<div class="button-list"><a class="button" id="today7"></a></div>
-<div class="button-list"><a class="button" id="today8"></a></div>
-<div class="button-list"><a class="button" id="today9"></a></div>
-<div class="button-list"><a class="button" id="today10"></a></div>
-<div class="button-list"><a class="button" id="today11"></a></div>
-<div class="button-list"><a class="button" id="today12"></a></div>
-<div class="button-list"><a class="button" id="today13"></a></div>
-<div class="button-list"><a class="button" id="today14"></a></div>
-<div class="button-list"><a class="button" id="today15"></a></div>
-<div class="button-list"><a class="button" id="today16"></a></div>
-<div class="button-list"><a class="button" id="today17"></a></div>
-<div class="button-list"><a class="button" id="today18"></a></div>
-<div class="button-list"><a class="button" id="today19"></a></div>
-<div class="button-list"><a class="button" id="today20"></a></div>
-<div class="button-list"><a class="button" id="today21"></a></div>
-<div class="button-list"><a class="button" id="today22"></a></div>
-<div class="button-list"><a class="button" id="today23"></a></div>
-<div class="button-list"><a class="button" id="today24"></a></div>
-<div class="button-list"><a class="button" id="today25"></a></div>
-<div class="button-list"><a class="button" id="today26"></a></div>
-<div class="button-list"><a class="button" id="today27"></a></div>
-<div class="button-list"><a class="button" id="today28"></a></div>
-<div class="button-list"><a class="button" id="today29"></a></div>
-<div class="button-list"><a class="button" id="today30"></a></div>
+<div id="buttons"></div>
 </body>
 </html>
