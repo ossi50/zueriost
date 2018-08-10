@@ -28,13 +28,19 @@
         var buttonEl = document.createElement("a");
         buttonEl.setAttribute("class", "button");
         buttonEl.href=url;
-        buttonEl.target="_blank";
+        buttonEl.target="Zeitung";
         buttonEl.text=wochentagText[wochentag] + ": " + dd + "." + mm + "." + yyyy;
 
         var divEl = document.createElement("div");
         divEl.setAttribute("class", "button-list");
         divEl.appendChild(buttonEl);
         buttonsDiv.appendChild(divEl);
+
+        buttonEl.addEventListener("click", function(){
+            window.setTimeout(function() {
+                window.open(url, "Zeitung");
+            }, 5000);
+        });
     }
 
     function pad0(num) {
